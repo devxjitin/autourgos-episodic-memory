@@ -90,6 +90,14 @@ for ep in past:
 real file path for recall across restarts — episodes are reloaded and re-indexed on the next
 `EpisodicMemory(db_path=...)` construction.
 
+`EpisodicMemory` supports the context-manager protocol, closing its connection automatically:
+
+```python
+with EpisodicMemory(db_path="agent_episodes.db") as memory:
+    memory.remember(task="Deploy the app", outcome="success")
+# connection is closed here automatically
+```
+
 ---
 
 ## Constructor Reference
