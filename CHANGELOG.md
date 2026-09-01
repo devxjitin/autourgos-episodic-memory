@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.0] - 2026-09-01
+
+- Added: `EpisodicMemory` supports the context-manager protocol
+  (`with EpisodicMemory(...) as mem:`), closing its connection
+  automatically.
+
 ## [0.1.0] - 2026-08-31
 
 - Initial release: `EpisodicMemory` (SQLite-persisted, structured task/outcome log) and
