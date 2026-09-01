@@ -19,7 +19,7 @@ import sqlite3
 import threading
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from autourgos_semantic_memory import KeywordRetriever
 
@@ -178,3 +178,9 @@ class EpisodicMemory(BaseRetriever):
     def close(self) -> None:
         with self._lock:
             self._conn.close()
+
+    def __enter__(self) -> "EpisodicMemory":
+        return self
+
+    def __exit__(self, *exc_info: Any) -> None:
+        self.close()

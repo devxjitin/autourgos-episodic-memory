@@ -87,3 +87,12 @@ def test_max_episodes_rejects_invalid_values():
         EpisodicMemory(max_episodes=0)
     with pytest.raises(ValueError):
         EpisodicMemory(max_episodes=-1)
+
+
+def test_supports_context_manager_and_closes_connection():
+    import sqlite3
+    with EpisodicMemory() as memory:
+        memory.remember(task="Deploy the app", outcome="success")
+        assert memory.retrieve("Deploy the app", top_k=5)
+    with pytest.raises(sqlite3.ProgrammingError):
+        memory.remember(task="after close", outcome="success")
