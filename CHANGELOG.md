@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.1] - 2026-09-01
+
+- Metadata: added `maintainers` (Sonia, Vishwanil Suman) to `pyproject.toml`,
+  and added Contributor badges for both to the README (Sonia's linked to
+  her GitHub profile, https://github.com/dahiyasonia). No code changes.
+
 ## [0.2.0] - 2026-09-01
 
 - Added: `EpisodicMemory` supports the context-manager protocol

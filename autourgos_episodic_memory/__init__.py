@@ -25,6 +25,6 @@ try:
     from importlib.metadata import version as _v
     __version__ = _v("autourgos-episodic-memory")
 except Exception:
-    __version__ = "0.1.0"
+    __version__ = "0.2.1"
 
 __all__ = ["EpisodicMemory", "Episode", "EpisodicMemoryError"]

@@ -4,6 +4,8 @@
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://pypi.org/project/autourgos-episodic-memory/)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-green.svg)](https://github.com/devxjitin/autourgos-episodic-memory/blob/main/LICENSE)
 [![Author](https://img.shields.io/badge/Author-Jitin%20Kumar%20Sengar-blue.svg)](https://github.com/devxjitin)
+[![Contributor](https://img.shields.io/badge/Contributor-Sonia-blueviolet.svg)](https://github.com/dahiyasonia)
+[![Contributor](https://img.shields.io/badge/Contributor-Vishwanil%20Suman-blueviolet.svg)]()
 
 Structured task/outcome log for [Autourgos](https://github.com/devxjitin) agents. Unlike the
 freeform conversational recall the rest of the memory family provides, `EpisodicMemory`
