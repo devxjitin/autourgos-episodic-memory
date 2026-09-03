@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.0] - 2026-09-03
+
+- Version bump to 1.0.0 to declare the public API stable. No breaking changes —
+  `EpisodicMemory`/`Episode`/`EpisodicMemoryError` behavior is unchanged from 0.2.1.
+- Added `features.md` documenting the feature set and a competitor comparison.
+
 ## [0.2.1] - 2026-09-01
 
 - Metadata: added `maintainers` (Sonia, Vishwanil Suman) to `pyproject.toml`,
