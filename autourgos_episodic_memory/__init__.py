@@ -21,10 +21,8 @@ autourgos-semantic-memory's TF-IDF KeywordRetriever.
 """
 from .memory import Episode, EpisodicMemory, EpisodicMemoryError
 
-try:
-    from importlib.metadata import version as _v
-    __version__ = _v("autourgos-episodic-memory")
-except Exception:
-    __version__ = "1.0.0"
+from autourgos_core import package_version
+
+__version__ = package_version("autourgos-episodic-memory", fallback="1.0.1")
 
 __all__ = ["EpisodicMemory", "Episode", "EpisodicMemoryError"]

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "autourgos-episodic-memory"
-version = "1.0.0"
+version = "1.0.1"
 description = "Structured task/outcome log for Autourgos agents — EpisodicMemory."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -30,6 +30,7 @@ classifiers = [
 dependencies = [
     "autourgos-memory>=1.0.6",
     "autourgos-semantic-memory>=2.1.1",
+    "autourgos-core>=0.3.0",
 ]
 
 [project.optional-dependencies]
