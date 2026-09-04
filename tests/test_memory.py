@@ -1,4 +1,6 @@
 """Tests for EpisodicMemory."""
+import os
+
 import pytest
 
 from autourgos_episodic_memory import Episode, EpisodicMemory, EpisodicMemoryError
@@ -96,3 +98,13 @@ def test_supports_context_manager_and_closes_connection():
         assert memory.retrieve("Deploy the app", top_k=5)
     with pytest.raises(sqlite3.ProgrammingError):
         memory.remember(task="after close", outcome="success")
+
+
+def test_db_path_with_missing_parent_dir_is_created_automatically(tmp_path):
+    """Regression: a fresh db_path whose directory doesn't exist yet used
+    to raise sqlite3.OperationalError -- open_sqlite() now creates it."""
+    db_path = str(tmp_path / "nested" / "does" / "not" / "exist" / "episodes.db")
+    memory = EpisodicMemory(db_path=db_path)
+    memory.remember(task="test", outcome="success")
+    memory.close()
+    assert os.path.exists(db_path)

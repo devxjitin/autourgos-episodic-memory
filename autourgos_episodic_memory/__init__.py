@@ -23,6 +23,6 @@ from .memory import Episode, EpisodicMemory, EpisodicMemoryError
 
 from autourgos_core import package_version
 
-__version__ = package_version("autourgos-episodic-memory", fallback="1.0.1")
+__version__ = package_version("autourgos-episodic-memory", fallback="1.0.2")
 
 __all__ = ["EpisodicMemory", "Episode", "EpisodicMemoryError"]

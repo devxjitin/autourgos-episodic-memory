@@ -15,12 +15,12 @@ duplicating that algorithm.
 from __future__ import annotations
 
 import json
-import sqlite3
 import threading
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from typing import Any, List, Optional
 
+from autourgos_core import open_sqlite, row_cap_evict
 from autourgos_semantic_memory import KeywordRetriever
 
 from .base import BaseRetriever, Document
@@ -93,8 +93,7 @@ class EpisodicMemory(BaseRetriever):
         self._lock = threading.RLock()
         self._retriever = KeywordRetriever(max_documents=max_episodes)
 
-        self._conn = sqlite3.connect(db_path, check_same_thread=False)
-        self._conn.execute("PRAGMA journal_mode=WAL")
+        self._conn = open_sqlite(db_path)
         self._conn.execute(
             """
             CREATE TABLE IF NOT EXISTS episodes (
@@ -153,15 +152,8 @@ class EpisodicMemory(BaseRetriever):
             )
             self._conn.commit()
             if self.max_episodes is not None:
-                count = self._conn.execute("SELECT COUNT(*) FROM episodes").fetchone()[0]
-                overflow = count - self.max_episodes
-                if overflow > 0:
-                    self._conn.execute(
-                        "DELETE FROM episodes WHERE id IN "
-                        "(SELECT id FROM episodes ORDER BY id ASC LIMIT ?)",
-                        (overflow,),
-                    )
-                    self._conn.commit()
+                row_cap_evict(self._conn, "episodes", "id", self.max_episodes)
+                self._conn.commit()
             self._retriever.add_document(episode.to_document())
         return episode
 
